@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify, json
-from model import Classifiers
+from flask import Flask, request
+from src.model import Classifiers
 
 app = Flask(__name__)
 
