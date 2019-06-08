@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
@@ -20,7 +20,7 @@ clf_forest = RandomForestClassifier(n_estimators=15, max_depth=5)
 clf_forest.fit(X_train, y_train)
 clf_forest.score(X_test, y_test)
 
-@app.route('/predict')
+@app.route('/predict', methods=['POST'])
 def predict():
 
     """Example endpoint returning a prediction of iris
@@ -47,10 +47,9 @@ def predict():
     s_width = request.args.get("s_width")
     p_length = request.args.get("p_length")
     p_width = request.args.get("p_width")
-    print(type(s_length))
     prediction = clf_forest.predict(np.array([[s_length, s_width, p_length, p_width]]))
     print(prediction)
-    print(type(prediction))
+
     return str(prediction)
 
 @app.route('/predict_file', methods=["POST"])
@@ -65,6 +64,7 @@ def predict_iris_file():
     """
     input_data = pd.read_csv(request.files.get("input_file"), header=None)
     prediction = clf_forest.predict(input_data)
+    print(prediction)
     return str(list(prediction))
 
 if __name__ == '__main__':
