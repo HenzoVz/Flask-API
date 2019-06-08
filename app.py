@@ -1,9 +1,9 @@
 from flask import Flask, request
-from src.model import Classifiers
+from model import Classifiers
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/predict', methods=['POST'])
 def predict_iris():
 
     data1 = request.get_json(force=True)
