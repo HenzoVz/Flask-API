@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request
-from model import Classifiers
+from src.model import Classifiers
 
 app = Flask(__name__)
 
