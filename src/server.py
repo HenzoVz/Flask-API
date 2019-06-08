@@ -3,7 +3,7 @@ from src.model import Classifiers
 
 app = Flask(__name__)
 
-@app.route('/predict',methods=['POST'])
+@app.route('/')
 def predict_iris():
 
     data1 = request.get_json(force=True)
