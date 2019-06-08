@@ -14,4 +14,4 @@ class Classifiers():
         clf_forest.fit(X_train, y_train)
         return clf_forest.predict(data)
 
-print(Classifiers.Random_Forest([[1.8,1,2,1]]))
+#print(Classifiers.Random_Forest([[1.8,1,2,1]]))
