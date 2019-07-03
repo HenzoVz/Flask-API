@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, json
 from model import Classifiers
 
 app = Flask(__name__)
@@ -15,13 +15,13 @@ def predict_iris():
     prediction, accuracy = Classifiers.Random_Forest([[s_length['s_length'], s_width['s_width'], p_length['p_length'], p_width['p_width']]])
     if prediction == [0]:
        iris_setosa = 'Iris Setosa'
-       return iris_setosa
+       return json.dumps(iris_setosa)
     if prediction == [1]:
        iris_virginica = 'Iris Virginica'
-       return iris_virginica
+       return json.dumps(iris_virginica)
     else:
        iris_versicolor = 'Iris Versicolor'
-       return iris_versicolor
+       return json.dumps(iris_versicolor)
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
